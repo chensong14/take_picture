@@ -1,0 +1,20 @@
+.brand-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28rpx; }
+.brand { margin-bottom: 10rpx; color: #8a9b2d; font-size: 21rpx; font-weight: 800; letter-spacing: 3rpx; }
+.avatar { display: flex; width: 76rpx; height: 76rpx; align-items: center; justify-content: center; border-radius: 50%; background: #171717; color: #ddea77; font-weight: 800; }
+.hero { padding: 34rpx; background: linear-gradient(145deg, #ffffff, #f1f5ce); }
+.hero-label { display: inline-flex; padding: 8rpx 16rpx; border-radius: 999rpx; background: #171717; color: #e3ef87; font-size: 21rpx; font-weight: 700; }
+.hero-title { margin-top: 28rpx; font-size: 42rpx; font-weight: 800; }
+.hero-desc { margin-top: 14rpx; color: #6e6b64; line-height: 1.65; }
+.hero-button { margin-top: 32rpx; }
+.section-row { display: flex; align-items: center; justify-content: space-between; }
+.more { color: #7b892c; font-size: 24rpx; }
+.recommend-list { display: flex; flex-direction: column; gap: 18rpx; }
+.recommend-card { display: flex; padding: 24rpx; gap: 22rpx; }
+.recommend-icon { display: flex; width: 96rpx; height: 96rpx; flex: 0 0 auto; align-items: center; justify-content: center; border-radius: 20rpx; background: #f1f4d9; color: #657214; font-size: 42rpx; }
+.recommend-title { font-size: 30rpx; font-weight: 700; }
+.recommend-desc { margin-top: 8rpx; color: #77746f; font-size: 24rpx; line-height: 1.5; }
+.tag-row { display: flex; gap: 10rpx; margin-top: 14rpx; }
+.tag { padding: 5rpx 13rpx; border: 1rpx solid #ded9ce; border-radius: 999rpx; color: #6e6a63; font-size: 20rpx; }
+.tip { margin-top: 24rpx; padding: 26rpx; }
+.tip-title { font-weight: 700; }
+.tip-text { margin-top: 8rpx; color: #7c7871; font-size: 23rpx; line-height: 1.6; }

@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/capture/index",
+    "pages/works/index",
+    "pages/profile/index",
+    "pages/generation/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "AI 创作平台",
+    "navigationBarBackgroundColor": "#F7F4EE",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F7F4EE",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#77746F",
+    "selectedColor": "#111111",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/capture/index",
+        "text": "创作"
+      },
+      {
+        "pagePath": "pages/works/index",
+        "text": "作品"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

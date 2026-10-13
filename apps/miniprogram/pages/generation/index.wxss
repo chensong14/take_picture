@@ -1,0 +1,12 @@
+.source-image { display: block; width: 100%; height: 420rpx; margin-top: 28rpx; }
+.progress-block { display: block; margin-top: 20rpx; }
+.steps { margin-top: 20rpx; padding: 28rpx; }
+.step { padding: 18rpx 0; border-bottom: 1rpx solid #eeeae1; color: #aaa69e; font-size: 25rpx; }
+.step:last-child { border-bottom: none; }
+.step.active { color: #303600; font-weight: 700; }
+.result-image { display: block; width: 100%; height: 560rpx; }
+.result-error { margin-top: 14rpx; color: #b42318; font-size: 24rpx; line-height: 1.5; }
+.result-tip { margin: 18rpx 0 26rpx; color: #87837b; font-size: 22rpx; line-height: 1.6; }
+.error-card { margin-top: 22rpx; padding: 30rpx; }
+.error-title { color: #b42318; font-size: 30rpx; font-weight: 700; }
+.error-message { margin: 14rpx 0 26rpx; color: #77736d; }

@@ -1,0 +1,9 @@
+{
+  "desc": "AI 创作平台页面索引配置",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}

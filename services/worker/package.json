@@ -1,0 +1,16 @@
+{
+  "name": "photo-service-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI job worker with replaceable model adapter",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node --watch src/worker.js",
+    "start": "node src/worker.js",
+    "check": "node --check src/worker.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "mysql2": "^3.12.0"
+  }
+}

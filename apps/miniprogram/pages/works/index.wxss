@@ -1,0 +1,13 @@
+.works-list { display: flex; flex-direction: column; gap: 22rpx; margin-top: 28rpx; }
+.work-card { overflow: hidden; }
+.work-image { display: block; width: 100%; height: 430rpx; }
+.work-body { padding: 24rpx; }
+.work-title-row { display: flex; align-items: center; justify-content: space-between; }
+.work-title { font-size: 30rpx; font-weight: 700; }
+.favorite { color: #849225; font-size: 46rpx; line-height: 1; }
+.work-prompt { margin-top: 12rpx; color: #6f6c66; line-height: 1.55; }
+.work-time { margin-top: 16rpx; color: #aaa69e; font-size: 21rpx; }
+.empty { margin-top: 50rpx; padding: 60rpx 34rpx 34rpx; text-align: center; }
+.empty-icon { color: #aaba3c; font-size: 74rpx; }
+.empty-title { margin-top: 18rpx; font-size: 32rpx; font-weight: 700; }
+.empty-desc { margin: 12rpx 0 30rpx; color: #87837d; line-height: 1.6; }

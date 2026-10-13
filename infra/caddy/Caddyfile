@@ -1,0 +1,7 @@
+{$PUBLIC_DOMAIN} {
+    tls /etc/caddy/certs/chendesongai.rqez.cn_bundle.pem /etc/caddy/certs/chendesongai.rqez.cn.key
+
+    encode gzip
+
+    reverse_proxy api:3000
+}

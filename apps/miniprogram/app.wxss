@@ -1,0 +1,80 @@
+page {
+  min-height: 100%;
+  background: #f7f4ee;
+  color: #171717;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 28rpx;
+}
+
+view, text, image, button, input, textarea {
+  box-sizing: border-box;
+}
+
+button::after {
+  border: none;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 48rpx;
+}
+
+.page-title {
+  font-size: 44rpx;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.page-subtitle {
+  margin-top: 12rpx;
+  color: #77746f;
+  font-size: 25rpx;
+  line-height: 1.6;
+}
+
+.card {
+  background: #ffffff;
+  border: 1rpx solid #e8e3da;
+  border-radius: 24rpx;
+  box-shadow: 0 10rpx 30rpx rgba(46, 39, 25, 0.05);
+}
+
+.primary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 92rpx;
+  border-radius: 22rpx;
+  background: #dce978;
+  color: #171717;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.primary-button[disabled] {
+  background: #ece9df;
+  color: #aaa69e;
+}
+
+.secondary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 84rpx;
+  border: 1rpx solid #ded8ce;
+  border-radius: 20rpx;
+  background: #ffffff;
+  color: #252525;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.section-title {
+  margin: 34rpx 0 18rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.muted {
+  color: #8a867f;
+}

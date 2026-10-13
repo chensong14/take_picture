@@ -1,0 +1,12 @@
+<view class="progress-card card">
+  <view class="progress-header">
+    <view>
+      <view class="eyebrow">{{statusLabels[status] || '处理中'}}</view>
+      <view class="message">{{message}}</view>
+    </view>
+    <text class="percent">{{progress}}%</text>
+  </view>
+  <view class="track">
+    <view class="bar" style="width: {{progress}}%;"></view>
+  </view>
+</view>

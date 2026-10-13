@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "生成任务",
+  "usingComponents": {
+    "job-progress": "/components/job-progress/index"
+  }
+}

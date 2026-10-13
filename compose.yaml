@@ -1,0 +1,150 @@
+name: ai-creative
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: ai-creative-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: Asia/Shanghai
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_ai_ci
+      - --default-time-zone=+08:00
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  migrate:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    container_name: ai-creative-migrate
+    environment:
+      NODE_ENV: production
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+    command: ["node", "scripts/migrate.js"]
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    container_name: ai-creative-api
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      UPLOAD_DIR: storage/uploads
+      MAX_UPLOAD_BYTES: 10485760
+      CLIENT_ORIGIN: "*"
+      WECHAT_APPID: ${WECHAT_APPID:-}
+      WECHAT_APP_SECRET: ${WECHAT_APP_SECRET:-}
+      SESSION_DAYS: 30
+      DEV_AUTH_ENABLED: ${DEV_AUTH_ENABLED:-false}
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - api_uploads:/app/services/api/storage/uploads
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2.10-alpine
+    container_name: ai-creative-caddy
+    environment:
+      PUBLIC_DOMAIN: ${PUBLIC_DOMAIN}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./infra/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./infra/caddy/certs:/etc/caddy/certs:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      api:
+        condition: service_started
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: .
+      dockerfile: services/worker/Dockerfile
+    container_name: ai-creative-worker
+    environment:
+      NODE_ENV: production
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORKER_POLL_MS: 1500
+      UPLOAD_DIR: /app/storage/uploads
+      AI_IMAGE_PROVIDER: ${AI_IMAGE_PROVIDER:-passthrough}
+      DASHSCOPE_API_KEY: ${DASHSCOPE_API_KEY:-}
+      DASHSCOPE_IMAGE_MODEL: ${DASHSCOPE_IMAGE_MODEL:-qwen-image-3.0}
+      DASHSCOPE_BASE_URL: ${DASHSCOPE_BASE_URL:-https://dashscope.aliyuncs.com/api/v1}
+      AI_REQUEST_TIMEOUT_MS: ${AI_REQUEST_TIMEOUT_MS:-300000}
+      AI_MAX_RETRIES: ${AI_MAX_RETRIES:-2}
+    volumes:
+      - api_uploads:/app/storage/uploads
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: ai-creative-cloudflared
+    profiles: ["public"]
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN:-}
+    depends_on:
+      api:
+        condition: service_started
+    restart: unless-stopped
+
+  cloudflared-quick:
+    image: cloudflare/cloudflared:latest
+    container_name: ai-creative-cloudflared-quick
+    profiles: ["quick-tunnel"]
+    command: tunnel --no-autoupdate --url http://api:3000
+    depends_on:
+      api:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+    name: ai-creative-mysql-data
+  api_uploads:
+    name: ai-creative-api-uploads
+  caddy_data:
+    name: ai-creative-caddy-data
+  caddy_config:
+    name: ai-creative-caddy-config

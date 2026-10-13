@@ -1,0 +1,15 @@
+.upload-card { margin-top: 30rpx; overflow: hidden; }
+.upload-empty { display: flex; height: 480rpx; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(145deg, #fbfaf7, #f0f2dd); }
+.plus { display: flex; width: 90rpx; height: 90rpx; align-items: center; justify-content: center; border: 2rpx solid #cbd65d; border-radius: 50%; color: #8b9829; font-size: 52rpx; }
+.upload-title { margin-top: 24rpx; font-size: 30rpx; font-weight: 700; }
+.upload-desc { margin-top: 10rpx; color: #8a867f; font-size: 23rpx; }
+.upload-action { display: flex; align-items: center; justify-content: center; width: 100%; height: 84rpx; margin-top: 18rpx; border-radius: 20rpx; background: #dce978; color: #171717; font-size: 28rpx; font-weight: 700; }
+.preview { display: block; width: 100%; height: 520rpx; }
+.replace-button { margin-top: 18rpx; }
+.input-card { padding: 22rpx; }
+.prompt-input { width: 100%; min-height: 190rpx; font-size: 27rpx; line-height: 1.6; }
+.counter { text-align: right; color: #99958e; font-size: 21rpx; }
+.style-list { display: flex; gap: 14rpx; }
+.style-item { flex: 1; padding: 22rpx 10rpx; border: 1rpx solid #ddd8cf; border-radius: 18rpx; background: #ffffff; text-align: center; color: #6d6a64; font-size: 24rpx; }
+.style-item.active { border-color: #c3d04e; background: #eef3c4; color: #202400; font-weight: 700; }
+.generate-button { margin-top: 44rpx; }

@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="brand-row">
+    <view>
+      <view class="brand">AI PHOTO LAB</view>
+      <view class="page-title">让 AI 帮你完成创作</view>
+    </view>
+    <view class="avatar">AI</view>
+  </view>
+
+  <view class="hero card">
+    <view class="hero-label">智能场景分析</view>
+    <view class="hero-title">拍一下当前场景</view>
+    <view class="hero-desc">上传照片并描述你的想法，获得 AI 创作方案和图片结果。</view>
+    <button class="primary-button hero-button" bindtap="goCreate" style="position: relative; left: 1rpx; top: 4rpx">开始创作</button>
+  </view>
+
+  <view class="section-row">
+    <text class="section-title">今日灵感</text>
+    <text class="more" bindtap="goWorks">查看作品</text>
+  </view>
+
+  <view class="recommend-list">
+    <view wx:for="{{recommendations}}" wx:key="id" class="recommend-card card">
+      <view class="recommend-icon">{{item.icon}}</view>
+      <view class="recommend-content">
+        <view class="recommend-title">{{item.title}}</view>
+        <view class="recommend-desc">{{item.description}}</view>
+        <view class="tag-row">
+          <text wx:for="{{item.tags}}" wx:key="*this" class="tag">{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tip card">
+    <view class="tip-title">当前阶段说明</view>
+    <view class="tip-text">前端使用模拟 AI 任务，Phase 2 接入真实 API 后无需重写页面流程。</view>
+  </view>
+</view>

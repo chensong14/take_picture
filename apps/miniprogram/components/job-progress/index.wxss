@@ -1,0 +1,7 @@
+.progress-card { padding: 28rpx; }
+.progress-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20rpx; }
+.eyebrow { color: #819227; font-size: 22rpx; font-weight: 700; }
+.message { margin-top: 8rpx; font-size: 30rpx; font-weight: 700; }
+.percent { color: #73831f; font-size: 28rpx; font-weight: 700; }
+.track { height: 12rpx; margin-top: 24rpx; overflow: hidden; border-radius: 999rpx; background: #eeece5; }
+.bar { height: 100%; border-radius: inherit; background: #cddd61; transition: width 0.3s ease; }

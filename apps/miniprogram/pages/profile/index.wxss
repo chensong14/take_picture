@@ -1,0 +1,15 @@
+.profile-card { display: flex; flex-direction: column; align-items: center; padding: 42rpx 28rpx; }
+.avatar-button { width: 144rpx; height: 144rpx; padding: 0; overflow: hidden; border-radius: 50%; background: #edf1ce; }
+.avatar-image, .avatar-placeholder { width: 144rpx; height: 144rpx; }
+.avatar-placeholder { display: flex; align-items: center; justify-content: center; color: #859326; font-size: 56rpx; }
+.nickname-input { width: 70%; margin-top: 24rpx; text-align: center; font-size: 34rpx; font-weight: 700; }
+.profile-hint { margin-top: 12rpx; color: #99958e; font-size: 22rpx; }
+.stats { display: flex; align-items: center; margin-top: 20rpx; padding: 28rpx; }
+.stat { display: flex; flex: 1; flex-direction: column; align-items: center; }
+.stat-value { font-size: 38rpx; font-weight: 800; }
+.stat-label { margin-top: 5rpx; color: #8b877f; font-size: 22rpx; }
+.divider { width: 1rpx; height: 58rpx; background: #e5e0d7; }
+.login-card { padding: 28rpx; }
+.login-desc { color: #74716a; line-height: 1.65; }
+.code { margin: 18rpx 0; padding: 16rpx; border-radius: 12rpx; background: #f3f1eb; color: #69751c; font-family: monospace; }
+.login-card .primary-button { margin-top: 24rpx; }

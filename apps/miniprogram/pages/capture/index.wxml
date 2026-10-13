@@ -1,0 +1,28 @@
+<view class="page">
+  <view class="page-title">创建你的 AI 作品</view>
+  <view class="page-subtitle">选择照片、描述目标，任务会提交到异步生成流程。</view>
+
+  <view class="upload-card card {{imagePath ? 'has-image' : ''}}" bindtap="previewImage">
+    <image wx:if="{{imagePath}}" class="preview" src="{{imagePath}}" mode="aspectFill" binderror="onPreviewError"></image>
+    <view wx:else class="upload-empty">
+      <view class="plus">＋</view>
+      <view class="upload-title">选择或拍摄一张照片</view>
+      <view class="upload-desc">支持相机和相册，建议小于 10MB</view>
+    </view>
+  </view>
+  <view wx:if="{{previewError}}" class="preview-error">图片预览失败，请点击下方按钮重新选择。</view>
+  <button class="upload-action" bindtap="chooseImage">{{imagePath ? '重新选择图片' : '选择图片'}}</button>
+
+  <view class="section-title">描述你的创作想法</view>
+  <view class="input-card card">
+    <textarea class="prompt-input" maxlength="300" value="{{prompt}}" placeholder="例如：保留人物主体，将背景处理成温暖的电影感街景……" bindinput="onPromptInput"></textarea>
+    <view class="counter">{{promptLength}} / 300</view>
+  </view>
+
+  <view class="section-title">选择生成风格</view>
+  <view class="style-list">
+    <view wx:for="{{styles}}" wx:key="id" data-id="{{item.id}}" class="style-item {{selectedStyle === item.id ? 'active' : ''}}" bindtap="selectStyle">{{item.name}}</view>
+  </view>
+
+  <button class="primary-button generate-button" disabled="{{!imagePath || !prompt}}" bindtap="startGeneration">提交 AI 生成任务</button>
+</view>

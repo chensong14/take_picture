@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="page-title">AI 正在处理你的作品</view>
+  <view class="page-subtitle">页面通过轮询任务接口获得状态；离开页面时会停止轮询，避免无效请求。</view>
+
+  <image wx:if="{{draft.imagePath}}" class="source-image card" src="{{draft.imagePath}}" mode="aspectFill"></image>
+
+  <job-progress class="progress-block" progress="{{progress}}" message="{{message}}" status="{{status}}"></job-progress>
+
+  <view wx:if="{{status !== 'succeeded' && status !== 'failed'}}" class="steps card">
+    <view class="step {{progress >= 8 ? 'active' : ''}}">1. 任务进入队列</view>
+    <view class="step {{progress >= 28 ? 'active' : ''}}">2. 图片预处理与场景分析</view>
+    <view class="step {{progress >= 62 ? 'active' : ''}}">3. AI 内容生成</view>
+    <view class="step {{progress >= 88 ? 'active' : ''}}">4. 图片后处理与保存</view>
+  </view>
+
+  <view wx:if="{{status === 'succeeded'}}" class="result-section">
+    <view class="section-title">生成结果</view>
+    <image class="result-image card" src="{{resultUrl}}" mode="aspectFill" bindtap="previewResult" binderror="onResultImageError"></image>
+    <view wx:if="{{resultImageError}}" class="result-error">结果图片加载失败，请检查网络后重新进入作品库。</view>
+    <view class="result-tip">图片已保存到作品库，可随时查看和收藏。</view>
+    <button class="primary-button" bindtap="goWorks">进入作品库</button>
+  </view>
+
+  <view wx:if="{{status === 'failed'}}" class="error-card card">
+    <view class="error-title">任务执行失败</view>
+    <view class="error-message">{{errorMessage}}</view>
+    <button class="primary-button" bindtap="retry">重新生成</button>
+    <button wx:if="{{!draft.imagePath}}" class="secondary-button" bindtap="goCreate">返回创作页</button>
+  </view>
+</view>

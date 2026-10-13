@@ -1,0 +1,21 @@
+.env
+node_modules/
+.venv/
+__pycache__/
+*.log
+project.private.config.json
+.DS_Store
+backups/
+
+# Generated runtime data and local review artifacts
+services/api/storage/uploads/
+.video_frames/
+.phase0-video/
+
+# TLS private material and downloaded certificate packages
+infra/caddy/certs/
+*_nginx/
+*_nginx.zip
+*.key
+*.pfx
+*.p12

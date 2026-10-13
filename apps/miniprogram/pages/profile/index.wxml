@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="profile-card card">
+    <button class="avatar-button" open-type="chooseAvatar" bindchooseavatar="chooseAvatar">
+      <image wx:if="{{user.avatarUrl}}" class="avatar-image" src="{{user.avatarUrl}}" mode="aspectFill"></image>
+      <view wx:else class="avatar-placeholder">＋</view>
+    </button>
+    <input class="nickname-input" type="nickname" value="{{user.nickname}}" placeholder="填写昵称" bindblur="changeNickname" />
+    <view class="profile-hint">点击头像与昵称完成本地资料设置</view>
+  </view>
+
+  <view class="stats card">
+    <view class="stat"><text class="stat-value">{{workCount}}</text><text class="stat-label">作品</text></view>
+    <view class="divider"></view>
+    <view class="stat"><text class="stat-value">{{favoriteCount}}</text><text class="stat-label">收藏</text></view>
+  </view>
+
+  <view class="section-title">微信登录流程演示</view>
+  <view class="login-card card">
+    <view class="login-desc">点击后调用 wx.login 获取临时 code。Phase 2 会把 code 发给后端换取业务登录态。</view>
+    <view wx:if="{{loginCodePreview}}" class="code">Code：{{loginCodePreview}}</view>
+    <button class="primary-button" bindtap="simulateLogin">获取微信登录凭证</button>
+  </view>
+</view>

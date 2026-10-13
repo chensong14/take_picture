@@ -1,0 +1,25 @@
+<view class="page">
+  <view class="page-title">我的作品</view>
+  <view class="page-subtitle">生成结果先保存在本地缓存，后续将同步到 MySQL 与对象存储。</view>
+
+  <view wx:if="{{works.length}}" class="works-list">
+    <view wx:for="{{works}}" wx:key="id" class="work-card card">
+      <image class="work-image" src="{{item.imagePath}}" mode="aspectFill" data-url="{{item.imagePath}}" bindtap="previewWork"></image>
+      <view class="work-body">
+        <view class="work-title-row">
+          <text class="work-title">AI 创作作品</text>
+          <text class="favorite" data-id="{{item.id}}" bindtap="toggleFavorite">{{item.favorite ? '★' : '☆'}}</text>
+        </view>
+        <view class="work-prompt">{{item.prompt}}</view>
+        <view class="work-time">{{item.displayTime}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="empty card">
+    <view class="empty-icon">◫</view>
+    <view class="empty-title">还没有作品</view>
+    <view class="empty-desc">完成一次 AI 生成任务后，作品会显示在这里。</view>
+    <button class="primary-button" bindtap="goCreate">创建第一个作品</button>
+  </view>
+</view>

@@ -1,0 +1,38 @@
+const express = require('express')
+const cors = require('cors')
+const helmet = require('helmet')
+const morgan = require('morgan')
+const fs = require('node:fs')
+const env = require('./config/env')
+const requestId = require('./middleware/request-id')
+const { notFound, errorHandler } = require('./middleware/error-handler')
+const healthRouter = require('./routes/health')
+const authRouter = require('./routes/auth')
+const uploadRouter = require('./routes/uploads')
+const jobsRouter = require('./routes/jobs')
+const worksRouter = require('./routes/works')
+
+fs.mkdirSync(env.uploadDir, { recursive: true })
+
+const app = express()
+app.disable('x-powered-by')
+app.use(helmet())
+app.use(cors({ origin: env.clientOrigin === '*' ? true : env.clientOrigin }))
+app.use(express.json({ limit: '1mb' }))
+app.use(requestId)
+app.use(morgan(':method :url :status :response-time ms request_id=:req[x-request-id]'))
+app.use('/uploads', (req, res, next) => {
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
+  next()
+}, express.static(env.uploadDir, { fallthrough: false, index: false }))
+
+app.get('/', (req, res) => res.json({ service: 'photo-service-api', version: '0.1.0' }))
+app.use('/health', healthRouter)
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/uploads', uploadRouter)
+app.use('/api/v1/ai/jobs', jobsRouter)
+app.use('/api/v1/works', worksRouter)
+app.use(notFound)
+app.use(errorHandler)
+
+module.exports = app
